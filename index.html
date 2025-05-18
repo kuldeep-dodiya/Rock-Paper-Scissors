@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <h1>Rock Paper Scissors</h1>
+
+    <div class="theme-toggle">
+        <label>
+            <input type="checkbox" id="toggle-theme" />
+            Dark Mode
+        </label>
+    </div>
+
+    <div class="sound-toggle">
+        <label>
+            <input type="checkbox" id="toggle-sound" checked />
+            Sound On
+        </label>
+    </div>
+
+    <div class="game-container">
+        <div class="choice" data-choice="Rock" tabindex="0">✊ Rock</div>
+        <div class="choice" data-choice="Paper" tabindex="0">✋ Paper</div>
+        <div class="choice" data-choice="Scissors" tabindex="0">✌️ Scissors</div>
+    </div>
+
+    <div class="result" aria-live="polite"></div>
+    <div class="scoreboard" aria-live="polite">You: 0 | Computer: 0</div>
+
+
+    <audio id="sound-click" src="https://freesound.org/data/previews/256/256113_3263906-lq.mp3" preload="auto"></audio>
+    <audio id="sound-win" src="https://freesound.org/data/previews/331/331912_3248244-lq.mp3" preload="auto"></audio>
+    <audio id="sound-lose" src="https://freesound.org/data/previews/109/109662_945474-lq.mp3" preload="auto"></audio>
+    <audio id="sound-draw" src="https://freesound.org/data/previews/250/250629_4486188-lq.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

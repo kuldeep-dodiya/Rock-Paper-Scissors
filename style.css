@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+:root {
+    --color-primary: #00e5ff;
+    --color-win: #00ffb3;
+    --color-lose: #ff5370;
+    --color-bg-start: #0f2027;
+    --color-bg-mid: #203a43;
+    --color-bg-end: #2c5364;
+    --color-text: #e0f7f9;
+    --color-glass: rgba(255, 255, 255, 0.12);
+    --color-glass-hover: rgba(0, 229, 255, 0.2);
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(270deg, var(--color-bg-start), var(--color-bg-mid), var(--color-bg-end));
+    background-size: 600% 600%;
+    animation: gradientBG 20s ease infinite;
+    color: var(--color-text);
+    user-select: none;
+    overflow-x: hidden;
+    padding: 20px;
+    position: relative;
+}
+
+h1 {
+    font-size: 3.8rem;
+    margin-bottom: 30px;
+    color: var(--color-primary);
+    text-shadow: 0 0 15px #55f0ff;
+    letter-spacing: 3px;
+    animation: fadeInPop 1s ease forwards;
+    user-select: none;
+}
+
+.theme-toggle,
+.sound-toggle {
+    color: var(--color-text);
+    margin-bottom: 10px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.theme-toggle label,
+.sound-toggle label {
+    cursor: pointer;
+}
+
+.game-container {
+    display: flex;
+    gap: 45px;
+    margin-bottom: 40px;
+    animation: fadeInPop 1.2s ease forwards;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.choice {
+    background: var(--color-glass);
+    border-radius: 25px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 4px 30px rgba(0, 255, 255, 0.3),
+        inset 0 0 10px rgba(0, 255, 255, 0.5);
+    padding: 35px 55px;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-align: center;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+    user-select: none;
+    position: relative;
+    outline: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.choice:hover,
+.choice:focus {
+    transform: scale(1.25) rotate(7deg);
+    background-color: var(--color-glass-hover);
+    box-shadow:
+        0 0 25px var(--color-primary),
+        0 0 50px var(--color-primary),
+        inset 0 0 15px var(--color-primary);
+    z-index: 10;
+}
+
+.choice:active {
+    transform: scale(1.1) rotate(-7deg);
+    box-shadow:
+        0 0 15px #00c8e5,
+        inset 0 0 10px #00c8e5;
+}
+
+.choice.animate-click {
+    animation: clickPulse 0.4s ease forwards;
+}
+
+@keyframes clickPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--color-primary);
+    }
+
+    50% {
+        transform: scale(1.3);
+        box-shadow: 0 0 30px var(--color-primary);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--color-primary);
+    }
+}
+
+.result {
+    font-size: 2.4rem;
+    background: rgba(0, 255, 255, 0.15);
+    padding: 28px 45px;
+    border-radius: 30px;
+    box-shadow:
+        0 0 40px var(--color-primary),
+        inset 0 0 25px rgba(0, 255, 255, 0.5);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    text-align: center;
+    min-width: auto;
+    margin: auto;
+    user-select: none;
+    animation-fill-mode: forwards;
+    font-weight: 600;
+    color: var(--color-primary);
+    perspective: 600px;
+    position: relative;
+    overflow: visible;
+}
+
+.result.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation: fadeInPop 0.6s ease forwards;
+}
+
+.scoreboard {
+    margin-top: 25px;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    text-shadow: 0 0 10px var(--color-primary);
+    user-select: none;
+    font-weight: 600;
+    animation-fill-mode: forwards;
+    max-width: 90vw;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.win {
+    color: var(--color-win);
+    text-shadow: 0 0 15px var(--color-win), 0 0 30px var(--color-win);
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+.lose {
+    color: var(--color-lose);
+    text-shadow: 0 0 15px var(--color-lose), 0 0 30px var(--color-lose);
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes pulseGlow {
+    from {
+        text-shadow: 0 0 10px, 0 0 20px;
+    }
+
+    to {
+        text-shadow: 0 0 20px, 0 0 40px;
+    }
+}
+
+@keyframes fadeInPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+.flip-container {
+    perspective: 800px;
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.flipper {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.flipper.flipped {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.8rem;
+    border-radius: 25px;
+    box-shadow:
+        0 4px 30px rgba(0, 255, 255, 0.3),
+        inset 0 0 10px rgba(0, 255, 255, 0.5);
+    color: var(--color-primary);
+    user-select: none;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background: var(--color-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+body.dark {
+    --color-primary: #82cfff;
+    --color-win: #a6ffcb;
+    --color-lose: #ff6f91;
+    --color-bg-start: #121212;
+    --color-bg-mid: #242424;
+    --color-bg-end: #3b3b3b;
+    --color-text: #ccefff;
+    --color-glass: rgba(255, 255, 255, 0.06);
+    --color-glass-hover: rgba(130, 207, 255, 0.15);
+    background: linear-gradient(270deg, var(--color-bg-start), var(--color-bg-mid), var(--color-bg-end));
+    background-size: 600% 600%;
+    animation: gradientBG 20s ease infinite;
+}
